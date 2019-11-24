@@ -47,3 +47,16 @@ type Token struct {
 	Type    TokenType
 	Literal string
 }
+
+var keywoards = map[string]TokenType{
+	"fn":  FUNCTION,
+	"let": LET,
+}
+
+func LookupIdent(ident string) TokenType {
+	if tok, ok := keywoards[ident]; ok {
+		return tok
+	}
+
+	return IDENT
+}
