@@ -1,14 +1,19 @@
 package main
 
 import (
+	"dix/monkey/repl"
 	"fmt"
 	"os"
-
-	"dix/monkey/repl"
+	"os/user"
 )
 
 func main() {
-	fmt.Printf("Hello from Monkey programming language!\n")
+	user, err := user.Current()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Hello %s! This is the Monkey programming language!\n",
+		user.Username)
 	fmt.Printf("Feel free to type in commands\n")
 	repl.Start(os.Stdin, os.Stdout)
 }
